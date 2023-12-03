@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:student_db_provider/constants/constants.dart';
+import 'package:student_db_provider/model/student_modal/students_modal.dart';
 import 'package:student_db_provider/view/common_widgets/appbar_widget/appbar_widget.dart';
 
 class StudentDetailsPage extends StatelessWidget {
-  const StudentDetailsPage({super.key});
+  const StudentDetailsPage({super.key,required this.student});
+  final StudentModel student ;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +21,10 @@ class StudentDetailsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           kHeight50,
-          const CircleAvatar(
+          CircleAvatar(
             radius: 95,
             backgroundColor: baseColor,
+            backgroundImage: FileImage(File(student.image)),
           ),
           Container(
             height: 350,
@@ -33,13 +38,13 @@ class StudentDetailsPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('NAME :',style: costomTextStyle()),
+                    Text('NAME :\n\n ${student.name}',style: costomTextStyle()),
                     kHeight20,
-                    Text('AGE :',style: costomTextStyle()),
+                    Text('AGE : \n\n ${student.age}',style: costomTextStyle()),
                     kHeight20,
-                    Text('BATCH:',style: costomTextStyle()),
+                    Text('BATCH:\n \n${student.batch}',style: costomTextStyle()),
                     kHeight20,
-                    Text('PHONE NUMBER :',style: costomTextStyle()),
+                    Text('PHONE NUMBER :\n \n${student.phoneNumber}',style: costomTextStyle()),
                   ],
                 ),
           )
